@@ -1,0 +1,166 @@
+// Home Page Styles
+// ------------------------------------------------------------
+
+#content {
+	.padding-top(30);
+}
+
+.posts-list-with-intro {
+	.height(300);
+	.margin-bottom(36);
+	border-bottom: 1px solid @border;
+	
+	header {
+		.margin-bottom(27);
+	
+		h2 {
+			.padding-top(7);
+			line-height: 1;
+		}
+		
+		a.view-all {
+			.margin-right(30);
+			float: right;
+		}
+	}
+
+	article {
+		ul {
+			margin: 0;
+			
+			li {
+				width: 25%; .max-width(210);
+				.margin-right(20);
+				float: left;
+				
+				a.post-thumb {
+					.margin-bottom(13);
+				}
+			}
+		}
+	}
+}
+
+#navigator {
+	.size(980,200);
+	.margin-bottom(20);
+	background-color: @bodyBackground;
+	.transparent-border;
+	
+	.ie9 & { .width(987); }
+	.ie7 & { width: 960px; }
+	
+	h2 {
+		.max-width(190);
+		.margin(43,0,0,30);
+		float: left;
+		.text-set(19,21);
+		text-transform: uppercase;
+	}
+	ul {
+		.margin(5,21,0,0);
+		float: right;
+		list-style: none;
+		
+		.lt-ie9 & { margin-top: 18px; }
+
+		li {
+			.margin-right(9);
+			float: left;
+
+			a {
+			.size(126,135);
+			.padding-unified(5);
+			display: block;
+			float: left;
+			.box-sizing;
+			background: @white;
+			.border-radius(6);
+			#font > .alt-sans-serif(14, @weight-bold, 15);
+			text-align: center;
+			
+				span {
+					.size(116,75);
+					.margin-bottom(15);
+					display: block;
+					background: url('assets/images/backgrounds/bg-navigator.png') no-repeat 0 0;
+					
+				}
+			}
+					&.navigator-guide a span {
+						background-position: 0 0;
+					}
+					&.navigator-safety a span {
+						background-position: -135px 0;
+					}
+					&.navigator-state a span {
+						background-position: -271px 0;
+					}
+					&.navigator-qa a span {
+						background-position: -406px 0;
+					}
+					&.navigator-blog a span {
+						background-position: -542px 0;
+					}
+
+		}
+	}
+}
+
+#social {
+	.min-height(410);
+}
+
+#insurance-by-state {
+	.height(465);
+	.margin(0,0,0,-29);
+	.padding(0,0,0,30);
+	
+	body#home & {
+		.margin-bottom(24);
+		.padding-top(25);
+		background: url('assets/images/backgrounds/bg-squares-blue.gif') repeat 0 0;
+	}
+	
+	#mapster_wrap_0 {
+		.margin(20,0,0,-6);
+		float: left;
+	}
+	img {
+		float: left;
+	}
+
+	
+	ul#state-listing {
+		width: 50%;
+		.margin(23,0,0,0);
+		float: left;
+		list-style: none;
+		#font > .alt-sans-serif(14, @weight-bold, 20);
+		
+		li {
+			width: 33.333333%;
+			margin:0; float: left;
+			list-style: none;
+			
+			ul {
+				margin:0;
+				.text-set(14,20);
+				
+				li {
+					width: 100%;
+					margin:0; float: none;
+					
+					&.link-active a {
+						color: @orange;
+					}
+					
+					a {
+					}
+					
+				}
+			}
+		}
+	}
+}
+

@@ -1,0 +1,396 @@
+/* Mixins.less
+// Snippets of reusable CSS to develop faster and keep code readable
+------------------------------------------------------------------*/
+
+.full-width {
+	width: 100%;
+	.max-width(940);
+	margin: 0 auto;
+}
+.transparent-border {
+	border:10px solid transparent;
+	.background-clip(padding-box);
+		border:10px solid #d5e0e7;
+		border:10px solid rgba(35,15,0,.09);
+}
+
+
+// Breakpoints
+// ------------------------- Source: http://blog.scur.pl/2012/06/variable-media-queries-less-css/
+@highdensity: ~"only screen and (-webkit-min-device-pixel-ratio: 1.5)",
+              ~"only screen and (min--moz-device-pixel-ratio: 1.5)",
+              ~"only screen and (-o-min-device-pixel-ratio: 3/2)",
+              ~"only screen and (min-device-pixel-ratio: 1.5)";
+@iphone:			~"only screen and (max-width: 320px)";
+@mobile:      ~"only screen and (max-width: 639px)";
+@tablet:      ~"only screen and (min-width: 640px) and (max-width: 949px)";
+@desktop:     ~"only screen and (min-width: 950px)"; // and (max-width: 1180px)";
+//@desktop-xl:  ~"only screen and (min-width: 1181px)";
+
+
+.custom-bullet-li{
+	padding-left:9px;
+	padding-left: .9rem;
+	list-style: none;
+	position: relative;
+}
+.custom-bullet-li-before{
+	content: "\2022  "; // \2014 = dash, \2022 = bullet
+	position: absolute;
+	left:-1px;top:-1px;
+	font-size: 15px;
+}
+
+// UTILITY MIXINS
+// --------------------------------------------------
+
+// Clearfix
+// --------
+// For clearing floats like a boss h5bp.com/q
+// The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/
+.clearfix() {
+	*zoom:1;
+	
+	&:before,
+	&:after {
+	    content:"";
+	    display:table;
+	}
+	&:after {
+	    clear:both;
+	}
+}
+
+// Webkit-style focus
+// ------------------
+.tab-focus() {
+  // Default
+  outline: thin dotted #333;
+  // Webkit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+// Center-align a block level element
+// ----------------------------------
+.center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// IE7 inline-block
+// ----------------
+.ie7-inline-block() {
+  *display: inline; /* IE7 inline-block hack */
+  *zoom: 1;
+}
+
+// IE7 likes to collapse whitespace on either side of the inline-block elements.
+// Ems because we are attempting to match the width of a space character. Left
+// version is for form buttons, which typically come after other elements, and
+// right version is for icons, which come before. Applying both is ok, but it will
+// mean that space between those elements will be .6em (~2 space characters) in IE7,
+// instead of the 1 space in other browsers.
+.ie7-restore-left-whitespace() {
+  *margin-left: .3em;
+
+  &:first-child {
+    *margin-left: 0;
+  }
+}
+
+.ie7-restore-right-whitespace() {
+  *margin-right: .3em;
+
+  &:last-child {
+    *margin-left: 0;
+  }
+}
+
+// Sizing shortcuts
+// -------------------------
+.width(@sizeValue){
+  @pxValue: @sizeValue;
+  @remValue: (@sizeValue / 10);
+  width: ~"@{pxValue}px";
+  width: ~"@{remValue}rem";
+}
+.max-width(@sizeValue){
+  @pxValue: @sizeValue;
+  @remValue: (@sizeValue / 10);
+  max-width: ~"@{pxValue}px";
+  max-width: ~"@{remValue}rem";
+}
+.min-width(@sizeValue){
+  @pxValue: @sizeValue;
+  @remValue: (@sizeValue / 10);
+  min-width: ~"@{pxValue}px";
+  min-width: ~"@{remValue}rem";
+}
+
+.height(@sizeValue){
+  @pxValue: @sizeValue;
+  @remValue: (@sizeValue / 10);
+  height: ~"@{pxValue}px";
+  height: ~"@{remValue}rem";
+}
+.min-height(@sizeValue){
+  @pxValue: @sizeValue;
+  @remValue: (@sizeValue / 10);
+  min-height: ~"@{pxValue}px";
+  min-height: ~"@{remValue}rem";
+}
+
+.size(@width, @height) {
+  .width(@width);
+  .height(@height);
+}
+.square(@size) {
+  .size(@size, @size);
+}
+
+
+// FONTS
+// --------------------------------------------------
+
+.font-size(@sizeValue){
+  @pxValue: @sizeValue;
+  @remValue: (@sizeValue / 10);
+  font-size: ~"@{pxValue}px";
+  font-size: ~"@{remValue}rem";
+}
+.line-height(@sizeValue){
+  @pxValue: @sizeValue;
+  @remValue: (@sizeValue / 10);
+  line-height: ~"@{pxValue}px";
+  line-height: ~"@{remValue}rem";
+}
+.text-set(@font-size, @line-height){
+	.font-size(@font-size);
+	.line-height(@line-height);
+}
+
+#font {
+  #family {
+    .sans-serif() {
+      font-family: @sansFontFamily;
+    }
+    .alt-sans-serif() {
+      font-family: @altFontFamily;
+    }
+    .monospace() {
+      font-family: @monoFontFamily;
+    }
+  }
+  .shorthand(@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
+    .font-size(@size);
+    font-weight: @weight;
+    .line-height(@lineHeight);
+  }
+  .sans-serif(@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
+    #font > #family > .sans-serif;
+    #font > .shorthand(@size, @weight, @lineHeight);
+  }
+  .alt-sans-serif(@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
+    #font > #family > .alt-sans-serif;
+    #font > .shorthand(@size, @weight, @lineHeight);
+  }
+  .monospace(@size: @baseFontSize, @weight: normal, @lineHeight: @baseLineHeight) {
+    #font > #family > .monospace;
+    #font > .shorthand(@size, @weight, @lineHeight);
+  }
+}
+
+.style-italic        { font-style: italic; }
+.style-normal        { font-style: normal; }
+.weight-bold         { font-weight: @weight-bold; }
+.weight-semibold     { font-weight: @weight-semibold; }
+.weight-regular      { font-weight: @weight-regular; }
+.weight-light        { font-weight: @weight-light; }
+
+
+// Text overflow
+// -------------------------
+// Requires inline-block or block for proper styling
+.text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// CSS image replacement
+// -------------------------
+// Source: https://github.com/h5bp/html5-boilerplate/commit/aa0396eae757
+//.hide-text {
+//  font: 0/0 a;
+//  color: transparent;
+//  text-shadow: none;
+//  background-color: transparent;
+//  border: 0;
+//}
+//http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/
+.hide-text {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// MIXINS FOR REM SIZE TO AVOID ANNOYING DUPLICATIONS
+// --------------------------------------------------
+
+.margin( @marginTopValue, @marginRightValue, @marginBottomValue, @marginLeftValue ){
+
+  @pxTopValue: @marginTopValue;
+  @remTopValue: (@marginTopValue / 10);
+
+  @pxRightValue: @marginRightValue;
+  @remRightValue: (@marginRightValue / 10);
+
+  @pxBottomValue: @marginBottomValue;
+  @remBottomValue: (@marginBottomValue / 10);
+
+  @pxLeftValue: @marginLeftValue;
+  @remLeftValue: (@marginLeftValue / 10);
+
+  margin: ~"@{pxTopValue}px" ~"@{pxRightValue}px" ~"@{pxBottomValue}px" ~"@{pxLeftValue}px";
+  margin: ~"@{remTopValue}rem" ~"@{remRightValue}rem" ~"@{remBottomValue}rem" ~"@{remLeftValue}rem";
+}
+
+	.margin-unified(@sizeValue){
+		@pxValue: @sizeValue;
+		@remValue: (@sizeValue / 10);
+		margin: ~"@{pxValue}px";
+		margin: ~"@{remValue}rem";
+	}
+	.margin-top(@sizeValue){
+		@pxValue: @sizeValue;
+		@remValue: (@sizeValue / 10);
+		margin-top: ~"@{pxValue}px";
+		margin-top: ~"@{remValue}rem";
+	}
+	.margin-right(@sizeValue){
+		@pxValue: @sizeValue;
+		@remValue: (@sizeValue / 10);
+		margin-right: ~"@{pxValue}px";
+		margin-right: ~"@{remValue}rem";
+	}
+	.margin-bottom(@sizeValue){
+		@pxValue: @sizeValue;
+		@remValue: (@sizeValue / 10);
+		margin-bottom: ~"@{pxValue}px";
+		margin-bottom: ~"@{remValue}rem";
+	}
+	.margin-left(@sizeValue){
+		@pxValue: @sizeValue;
+		@remValue: (@sizeValue / 10);
+		margin-left: ~"@{pxValue}px";
+		margin-left: ~"@{remValue}rem";
+	}
+
+.padding(@paddingTopValue, @paddingRightValue, @paddingBottomValue, @paddingLeftValue){
+
+  @pxTopValue: @paddingTopValue;
+  @remTopValue: (@paddingTopValue / 10);
+
+  @pxRightValue: @paddingRightValue;
+  @remRightValue: (@paddingRightValue / 10);
+
+  @pxBottomValue: @paddingBottomValue;
+  @remBottomValue: (@paddingBottomValue / 10);
+
+  @pxLeftValue: @paddingLeftValue;
+  @remLeftValue: (@paddingLeftValue / 10);
+
+  padding: ~"@{pxTopValue}px" ~"@{pxRightValue}px" ~"@{pxBottomValue}px" ~"@{pxLeftValue}px";
+  padding: ~"@{remTopValue}rem" ~"@{remRightValue}rem" ~"@{remBottomValue}rem" ~"@{remLeftValue}rem";
+}
+	.padding-unified(@sizeValue){
+		@pxValue: @sizeValue;
+		@remValue: (@sizeValue / 10);
+		padding: ~"@{pxValue}px";
+		padding: ~"@{remValue}rem";
+	}
+	.padding-top(@sizeValue){
+		@pxValue: @sizeValue;
+		@remValue: (@sizeValue / 10);
+		padding-top: ~"@{pxValue}px";
+		padding-top: ~"@{remValue}rem";
+	}
+	.padding-right(@sizeValue){
+		@pxValue: @sizeValue;
+		@remValue: (@sizeValue / 10);
+		padding-right: ~"@{pxValue}px";
+		padding-right: ~"@{remValue}rem";
+	}
+	.padding-bottom(@sizeValue){
+		@pxValue: @sizeValue;
+		@remValue: (@sizeValue / 10);
+		padding-bottom: ~"@{pxValue}px";
+		padding-bottom: ~"@{remValue}rem";
+	}
+	.padding-left(@sizeValue){
+		@pxValue: @sizeValue;
+		@remValue: (@sizeValue / 10);
+		padding-left: ~"@{pxValue}px";
+		padding-left: ~"@{remValue}rem";
+	}
+
+
+// CSS3 PROPERTIES
+// --------------------------------------------------
+
+// Background clipping
+// Heads up: FF 3.6 and under need "padding" instead of "padding-box"
+.background-clip(@clip) {
+  -webkit-background-clip: @clip;
+     -moz-background-clip: ~"@{clip}-box";
+          background-clip: @clip;
+}
+
+// Background size
+.background-size(@size: cover){
+  -webkit-background-size: @size;
+     -moz-background-size: @size;
+      -ms-background-size: @size;
+       -o-background-size: @size;
+          background-size: @size;
+}
+
+// Border Radius
+.border-radius(@radius) {
+  -webkit-border-radius: ~"@{radius}px";
+   -khtml-border-radius: ~"@{radius}px";
+     -moz-border-radius: ~"@{radius}px";
+          border-radius: ~"@{radius}px";
+}
+
+// Box sizing
+.box-sizing(@sizing: border-box){
+  -webkit-box-sizing: @sizing;
+     -moz-box-sizing: @sizing;
+      -ms-box-sizing: @sizing;
+          box-sizing: @sizing;
+}
+
+// Drop shadows
+.box-shadow(@x: 1px, @y: 1px, @blur: 2px, @alpha: 0.2 ){
+  -webkit-box-shadow:  @x @y @blur rgba(0,0,0, @alpha);
+     -moz-box-shadow: @x @y @blur rgba(0,0,0, @alpha);
+          box-shadow:  @x @y @blur rgba(0,0,0, @alpha);
+}
+
+// Transitions
+.transition(@element:background-color, @duration:0.05s, @ease:ease-in-out) {
+  -webkit-transition: @element @duration @ease;
+     -moz-transition: @element @duration @ease;
+      -ms-transition: @element @duration @ease;
+       -o-transition: @element @duration @ease;
+          transition: @element @duration @ease;
+}
+
+// Opacity
+.opacity(@opacity) {
+  opacity: @opacity / 100;
+  filter: ~"alpha(opacity=@{opacity})";
+}

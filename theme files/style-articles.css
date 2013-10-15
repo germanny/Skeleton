@@ -1,0 +1,44 @@
+/* Articles ######################################################### */
+ol.fixed-height li {
+	height:230px;
+}
+
+li.fixed-height {
+	height: 250px;
+}
+
+/* LIST STYLES ######################################################### */
+
+ol.video p {
+	margin:10px 0;
+}
+
+
+/***** BELOW IS ALREADY IN THE STYLESHEET ****
+img.left, img.right, img.middle {
+	border-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+img.left {
+	margin:0 15px 5px 0 !important;
+	float:left;
+}
+
+img.right {
+	margin:0 0 5px 10px;
+float:right;
+}
+
+img.middle {
+	margin-left: auto !important;
+	margin-right: auto !important;
+	display: block;
+}
+
+.list-continue {
+	counter-reset: item;
+}
+*/

@@ -1,0 +1,134 @@
+// Images
+
+// FIGURES AND IMAGES
+figure {margin: 0;position: relative;}
+figure img {width: 100%;}
+
+iframe, video, object { .max-width(590); }
+#fb-likebox {
+	iframe {
+		max-width: none;	
+	}
+}
+// Img border in a tags and image quality
+// -------------------------
+
+img {
+  max-width: 100%; // Make images inherently responsive
+  height: auto;
+  vertical-align: middle;
+	display: block;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+	
+	&.size-thumbnail {
+		
+		width: 25% !important;
+		height: auto;
+		min-width: 150px !important;
+		max-width: 200px !important;
+	}
+
+	&.size-medium {
+		
+		width: 35% !important;
+		height: auto;
+		max-width: 300px !important;
+	}
+	&.size-large {
+		
+		width: 50% !important;
+		height: auto;
+		min-width: 465px !important;
+		max-width: 500px !important;
+	}
+	&.size-full {
+		
+		max-width:100% !important;
+		height: auto !important;
+		.margin(10,0,10,0);
+		clear: both;
+	}
+}
+img.alignleft, img.left, img[align="left"], img.zest {margin:0 2% 1em 0;}
+img.alignright, img.right, img[align="right"] {margin:0 0 1em 2%;}
+img.aligncenter, img.middle {margin: 0 auto 1em; display:block; float:none;}
+
+.entry-content img { margin-bottom: 1em; }
+
+.wp-caption {
+	
+	margin: 0 0 1em;
+	.padding(10,10,10,10);
+	background-color: #fff;
+	border: 1px solid @border;
+	
+	img { width: 100% !important; }
+}
+	div.wp-caption[style="width: 185px"] { .padding-unified(7); }
+	.wp-caption.alignleft { margin-right: 2%; }
+	.wp-caption.alignright { margin-left: 2%; }
+
+.wp-caption img { max-width:100% !important; margin: 0 !important; }
+
+p.wp-caption-text {
+	
+	margin:0;
+	.padding(8, 0, 0, 0);
+	.font-size(11) !important;
+	.line-height(16) !important;
+	font-style: italic;
+	text-align: center;
+}
+
+div.wp-caption[style="width: 185px"] {
+	.width(175) !important;
+}
+
+div.wp-caption[style="width: 310px"] { 
+	.width(300) !important;
+}
+div.wp-caption[style="width: 490px"] { 
+	.width(480) !important;
+}
+
+
+
+/***** POST THUMBNAILS *****/
+a.post-thumb {
+	.size(200,155);
+  display: block;
+  overflow: hidden;
+  
+  body#home .posts-list-with-intro & {
+	.size(210,155);
+  }
+
+	&.empty { display: none; }
+  a.post-thumb img {
+   min-width: 300px;
+   max-width: 600px;
+   height: auto;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

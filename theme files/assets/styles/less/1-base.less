@@ -1,0 +1,489 @@
+// Basic and global styles for generating a grid system, structural layout, and page templates
+// -------------------------------------------------------------------------------------------
+
+html { background: @bodyBackground url('assets/images/backgrounds/bg-html.gif');}
+body {  }
+
+// Links
+// ----------------------------------------------------------------------
+
+// Reset
+::-moz-selection { background: #8c979a; color: #fff; text-shadow: none; }
+::selection { background: #8c979a; color: #fff; text-shadow: none; }
+a:hover, a:active { outline: 0; }
+a { cursor: pointer; text-decoration: none;}
+a:hover { text-decoration: underline; }
+a:focus { outline: thin dotted; }
+a:hover, a:active { outline: 0; }
+
+// Style
+a { color: @linkColor; text-decoration: none; .transition(color);
+  &:visited { color: @linkColor; }
+  &:hover, &:active, &:focus, .link-active & { color: @linkColorHover; text-decoration: none; }
+}
+
+// AVOID TYPEKIT FOUT
+// ------------------
+
+.wf-loading body {
+	opacity: 0;
+	.transition(opacity, .02s, ease-in);
+}
+.wf-active body {
+	opacity:1;
+}
+
+
+// LAYOUT
+// -------
+#main, .wrap, header, footer, section, article, aside, #content { .box-sizing; }
+
+
+// center the contents
+#page {
+	width: 980px;
+	margin: 0 auto;
+	.clearfix;
+}
+#main { 
+	//width: 92%;
+}
+
+// main column & sidebar
+#content {
+	.margin-bottom(35);
+	.padding(48,0,0,29);
+	background-color: @white;
+	.transparent-border;
+	
+	body.page-template-template-state-profile-php &,
+	body.page-template-template-guide-profile-php &,
+	body#blog & {
+		.width(670);
+		float: left;
+		
+		.lt-ie8 & { width: 650px; }
+	}
+	
+	header  {
+		width: 100%;
+	}
+	
+	article {
+		width: 100%;
+		
+		.lt-ie8 & { width: 95%; }
+		.lt-ie8 body.home & { width: 100%; }
+	
+		ul { 
+			list-style: none;
+		}
+	}
+}
+
+.sidebar {
+
+	.width(290);
+	float: right;
+	.padding(0,0,33,0);
+	
+	.lt-ie8 & { width: 270px; }
+
+	&#sidebar-blog { .padding-top(33); }
+
+	section {
+		.margin(0,30,0,30);
+		
+		section { margin: 0; }
+		
+		h3 {
+			.padding(0,30,16,0);
+			letter-spacing: -.04em;
+			.text-set(28,30);
+			text-transform: uppercase;
+			.weight-regular;
+			
+			span {
+  			color: @orange;
+  		}
+		}
+		
+		ul {
+			.margin(0,30,0,0);
+			list-style: none;
+			#font > .alt-sans-serif(16, @weight-bold, 20);
+			
+			li {
+				.margin-bottom(10);
+				
+				&.current_page_item a {
+					color: @textColor;
+				}
+			}
+		}
+		
+		&#side-state-list, &#side-guide-list {
+			margin:0;
+			.padding(33,20,33,30);
+			
+			.lt-ie8 & { padding: 23px 10px 23px 20px; }
+			
+			h3 {
+				padding-right: 0;
+			}
+		}
+		
+		&#archive, &#twitter-feed {
+			.margin-bottom(35);
+			.padding-bottom(23);
+			border-bottom: 1px solid @border;
+		}
+		&#twitter-feed {
+			ul {
+				#font > .sans-serif(12, @weight-regular, 18);
+			}
+			p.twitter-follow-btn-ctnr {
+				.margin-bottom(11);
+			}
+		}
+
+	}
+}
+
+/***** SIDEBAR (AT THE BOTTOM ON NON-HOME PAGES) *****/
+
+aside#sidebar-main {
+	.height(235);
+	padding: 0;
+	
+	ul {
+		width: 100%;.max-width(900);
+		margin:0 auto;
+		list-style: none;
+		
+		.lt-ie9 & { max-width: 920px; }
+		
+		li {
+			width: 25%;.max-width(210);
+			.margin-right(20);
+			float: left;
+			
+			&:last-child { margin: 0; }
+			
+			a {
+				display: block;
+
+				h4 {
+					margin:0 auto;
+					.margin-bottom(5);
+					.padding-top(96);
+					display: block;
+					position: relative;
+					
+					color: @blue;
+					#font > .alt-sans-serif(28, @weight-regular, 30);
+					text-align: center;
+					text-transform: uppercase;
+					
+					&:before {
+						content: "";
+						position: absolute;
+						top:0;left:50%;margin-left: -40px;
+						.square(80);
+						display: block;
+						background: url('assets/images/icons/icons-sidebar.png') no-repeat 0 0;
+						
+						.lt-ie10 & {
+							.square(81);
+						}
+
+					}
+				}
+				
+				p {
+					
+				}
+
+			}
+			
+			&.facebook a h4:before {
+				background-position: 0 -80px;
+			}
+			
+			&.qa a h4:before {
+				background-position: 0 -160px;
+			}
+			
+			&.blog a h4:before {
+				background-position: 0 -240px;
+			}
+			
+		}
+	}
+	
+}
+
+.boxed {
+	.margin-bottom(20);
+	background-color: @bodyBackground;
+	.transparent-border;
+}
+
+/*****  SECTIONS *****/
+
+section {
+
+}
+.wrap {
+
+}
+
+/***** HEADER *****/
+
+header#branding{
+	background: @headerBackground;
+	.height(65);
+	.margin-bottom(20);
+}
+
+#logo {
+	.size(160,60);
+	.margin(2,9,0,9);
+	display: inline-block;
+	float: left;
+	
+	a{
+		.size(160,60);
+	  position: relative;
+		display: inline-block;
+		text-indent: -9999em;
+		
+		background: url('assets/images/logos/logo-header.png') no-repeat 0 0;
+	}
+}
+
+
+
+
+/***** NAVIGATION *****/
+
+nav{
+	
+	ul{ 
+		.margin(19,28,0, 0);
+		float: right;
+		padding: 0;
+		list-style-type: none;
+		#font > .alt-sans-serif(16, @weight-regular, @baseLineHeight);
+
+		.wf-active & {
+			/* ff-din-web needs a bigger font-size compared to Arial Narrow */
+		  .font-size(16);
+		}
+
+		.wf-inactive & {
+			/* styles to use when web fonts are inactive */
+		  .font-size(15);
+			letter-spacing: 0;
+		}
+		
+		li{ display: inline;
+
+			a{
+				float: left;
+				display: inline-block;
+				color: #84919a;
+				text-transform: uppercase;
+				padding: 6px 12px 0;
+				margin: 0;
+				
+				&:visited {
+					color: #84919a;
+				}
+
+				&:hover, &:active, &:focus {
+					color: @white;
+					opacity: 1;
+					text-decoration: none;
+				}
+			}
+			&.current-menu-item a, &.current_page_parent a, &.current-page-ancestor a {
+  			color: @white;
+  			opacity: 1;
+  			text-decoration: none;
+  		}
+		
+			&.twi a, &.fac a, &.rss a {
+				background-image: url('assets/images/social.png');
+				.square(25);
+				margin: 1px 2px 0;padding: 0;
+				text-indent: -1111em;
+				opacity: .45;
+			}
+			&.twi a:active, &.fac a:active, &.rss a:active,
+			&.twi a:hover, &.fac a:hover, &.rss a:hover,
+			&.twi a:focus, &.fac a:focus, &.rss a:focus {
+				opacity: 1;
+			}
+			&.twi a {
+				margin-left: 5px;
+			}
+			&.fac a {
+				background-position: -25px 0;
+			}
+			&.rss a {
+				background-position: -50px 0;
+			}
+
+		}
+		
+	}
+}
+
+
+/***** FOOTER *****/
+
+footer#siteinfo{
+	.margin-top(5);
+	padding: 20px 0;
+	border-top: 10px solid @white;
+	color: @textColor;
+	.line-height(21);
+	text-align: center;
+	
+	a { color: @textColor; }
+}
+
+// MISC
+// -----
+
+// Horizontal rules
+hr{
+	margin:0;
+	background: none;
+	border: 0;
+  border-top: 1px solid @hrBorder;
+	clear: both;
+	display: block;
+	height:1px;
+	width:100%;
+}
+
+hr.clearer {border: 0;
+	.lt-ie8 & {
+		color: @bodyBackground;
+		background: @bodyBackground;
+	}
+}
+hr.divider{}
+
+
+/***** INTRO ON LANDING PAGES *****/
+
+#intro {
+	.height(110);
+	
+	body#home &,
+	body.page-template & {
+		.height(315);
+		.margin-bottom(20);
+		
+			.lt-ie10 & {
+				width:100.1%;
+			}
+	}
+	
+	body.page-template-template-state-profile-php &,
+	body.page-template-template-guide-profile-php &,
+	body#blog & {
+		.height(130);
+		margin-bottom: 0;
+		.padding-top(31);
+	}
+	
+	article {
+		
+		body#home &,
+		body.page-template & {
+			.width(575);
+			float: left;
+		
+			.ie9 & { .width(579); }
+			.ie7 & { width: 555px; }
+		}
+		body.page-template-template-state-profile-php &,
+		body.page-template-template-guide-profile-php &,
+		body#blog & {
+			width: 100%;
+			float: none;
+		}
+	}
+	
+	h1, h2 {
+		.margin(31,0,0,0);
+		.padding(15,40,8,40);
+		background-color: @white;
+		color: @orange;
+		.font-size(32);
+		line-height: 1;
+		text-transform: uppercase;
+		
+		body.page-template-template-state-profile-php &,
+		body.page-template-template-guide-profile-php &,
+		body#blog & {
+			margin: 0;
+		}
+	}
+	p {
+		.padding(20,40,20,40);
+		.font-size(16); .line-height(30);
+	}
+}
+
+
+#latest-posts {
+	.margin-bottom(60);
+	
+	header {
+		.margin-bottom(27);
+	
+		h2 {
+			.padding-top(7);
+			line-height: 1;
+		}
+		
+		a.view-all {
+			.margin-right(30);
+			float: right;
+		}
+	}
+
+	article {
+		ul {
+			margin: 0;
+			list-style: none;
+			
+			li {
+				width: 50%; .max-width(440);
+				.min-height(165);
+				.padding-bottom(10);
+				float: left;
+				
+				&:nth-child(odd) {
+					.margin-right(20);
+				}
+				
+				h3 { .margin(5,0,9,0); }
+				
+				p { margin:0; }
+				
+				a.post-thumb {
+					.margin(0,19,0,0);
+					float: left;
+				}
+				
+				a.more-link { color: @textColor; }
+			}
+		}
+	}
+}

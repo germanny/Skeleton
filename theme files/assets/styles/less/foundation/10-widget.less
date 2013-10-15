@@ -1,0 +1,216 @@
+// Widget.less
+// Widget Large and Small
+// -----------------------------------------------------
+
+.widget-quote-finder {
+	border: 10px solid;
+	float: left;
+	  -webkit-box-sizing: border-box;
+	     -moz-box-sizing: border-box;
+	          box-sizing: border-box;
+	background: @blue;
+	border-color: darken(@blue, 9%);
+}
+	#intro .widget-quote-finder {
+		width: 405px;
+		height: 315px;
+	}
+	.widget-quote-finder.small {
+		.size(290,295);
+		.margin-bottom(20);
+		float: none;
+	}
+	.ie7 .widget-quote-finder.small { width: 250px; }
+
+.widget-quote-finder h2 {
+	margin: 0;
+	.padding(38,28,0,28);
+	background: transparent !important;
+	color: @white !important;
+	#font > .alt-sans-serif(46, @weight-bold, 45);
+	letter-spacing: -.06em;
+	text-shadow: 0 3px 0 rgba(0,0,0,.15);
+	text-transform: uppercase;
+}
+	.widget-quote-finder.small h2 {
+		.text-set(35,35);
+	}
+	.ie7 .widget-quote-finder.small h2 { padding: 28px 18px 0 18px; }
+
+	#intro .widget-quote-finder h2 {
+		margin: 0;
+		.padding(38,28,0,28);
+		.text-set(46,45);
+	}
+
+.widget-quote-finder form {
+	.padding(8,30,0,30);
+}
+	.ie7 .widget-quote-finder form { padding: 8px 20px 0 20px; }
+
+.widget-quote-finder form div {
+	position:relative;
+}
+
+.widget-quote-finder form div label {
+	position:absolute; top:13px; left:8px;
+	color: #666;
+	#font > .alt-sans-serif(20, @weight-regular, 20);
+}
+	.widget-quote-finder form div label {
+		top:11px; left:8px;
+		font-size: 18px;
+	}
+
+.widget-quote-finder div input[type="text"] {
+	.size(150,40);
+	.margin-right(10);
+	.padding-left(8);
+	float: left;
+	background: @white;
+	color: #666;
+	.font-size(20);
+}
+	.widget-quote-finder.small div input[type="text"] {
+		.margin(0,0,10,0);
+		padding-left: 0;
+		float: none;
+	}
+	
+	.ie7 .widget-quote-finder div input[type="text"],
+	.ie8 .widget-quote-finder div input[type="text"] {
+		padding: 9px 0 0 8px;
+	}
+	.ie7 .widget-quote-finder div input[type="text"] {
+		height: 32px;
+	}
+
+.widget-quote-finder input[type="submit"] {
+	.size(100,50);
+	.margin-top(-5);
+	.padding(4, 0, 0, 25);
+	float: left;
+	clear: none;
+
+	background: #fd9626 url('assets/images/icon-arrow.png') no-repeat 64px 15px;
+	border: 0;
+		-webkit-border-radius: 5px;
+	   -khtml-border-radius: 5px;
+		   -moz-border-radius: 5px;
+		        border-radius: 5px;
+
+	-webkit-box-shadow: 0 5px 0 rgba(0, 0, 0, 0.15);
+	   -moz-box-shadow: 0 5px 0 rgba(0, 0, 0, 0.15);
+	        box-shadow: 0 5px 0 rgba(0, 0, 0, 0.15);
+
+	color: #fff;
+	cursor: pointer;
+	#font > .alt-sans-serif(28, @weight-bold, 28);
+	text-align: left;
+	text-shadow: 0 3px 0 rgba(0,0,0,.15);
+
+	  -webkit-box-sizing: border-box;
+	     -moz-box-sizing: border-box;
+	          box-sizing: border-box;
+}
+	.widget-quote-finder.small input[type="submit"] {
+		.margin(0,0,10,0);
+	}
+
+
+.widget-quote-finder p.radio-group {
+	width: 100%;
+	margin: 0;
+	.padding(6,0,30,0);
+	clear: both;
+	color: @white;
+	#font > .alt-sans-serif(12, @weight-bold, 12);
+	text-transform: uppercase;
+}
+	#intro .widget-quote-finder p.radio-group {
+		.padding(6,0,30,0);
+		.font-size(12);
+	}
+	.ie7 .widget-quote-finder p.radio-group { padding: 14px 0 2px; }
+
+.widget-quote-finder p.radio-group label {
+	float: left;
+}
+
+.widget-quote-finder p.radio-group input {
+	margin: 0 2px 0 10px;
+	float: left;
+	top: 6px;
+}
+	.widget-quote-finder.small p.radio-group input {
+		top: -2px;
+	}
+
+
+.widget-quote-finder .top-carriers {
+	margin: 10px 30px 0;
+	padding: 7px 0;
+	border-top: 1px solid;
+
+	font-family: ff-din-web, sans-serif;
+	font-size: 10px;
+	text-transform: uppercase;
+}
+	.widget-quote-finder .top-carriers {
+		border-top-color: #5999c5;
+		color: #90bbd9;
+	}
+
+.widget-quote-finder .top-carriers h3 {
+	font-size: 10px;
+	font-weight: 400;
+}
+
+.widget-quote-finder .top-carriers ul {
+	width: 110%;
+	margin: 0; padding: 0;
+	list-style: none;
+	color: rgba(255,255,255,.6);
+  #font > .alt-sans-serif(10, @weight-bold, 16);
+}
+
+.widget-quote-finder .top-carriers ul li {
+	margin: 10px 0 0 10px;
+	padding: 0;
+	float: left; display: block;
+}
+
+	.widget-quote-finder .top-carriers ul li.liberty-mutual {
+		width: 103px; height: 26px;
+		margin: 0;
+		background: url('assets/images/logos/logo-libertymutual.png') no-repeat 0 0;
+		text-indent: -9999px;
+	}
+		.widget-quote-finder .top-carriers ul li.liberty-mutual {
+			opacity: .5;
+		}
+
+	.widget-quote-finder .top-carriers ul li.esurance {
+		width: 75px; height: 9px;
+		margin: 12px 0 0 12px;
+		background: url('assets/images/logos/logo-esurance.png') no-repeat 0 0;
+		text-indent: -9999px;
+	}
+		.widget-quote-finder .top-carriers ul li.esurance {
+			opacity: .5;
+		}
+
+	.widget-quote-finder .top-carriers ul li.geico {
+		width: 55px; height: 9px;
+		margin: 12px 0 0 12px;
+		background: url('assets/images/logos/logo-geico.png') no-repeat 0 0;
+		text-indent: -9999px;
+	}
+		.widget-quote-finder .top-carriers ul li.geico {
+			opacity: .5;
+		}
+	
+	.widget-quote-finder .top-carriers ul li.more { position:relative;top:3px; }
+
+
+

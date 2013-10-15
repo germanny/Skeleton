@@ -1,0 +1,70 @@
+//
+// Tables.less
+// Tables for, you guessed it, tabular data
+// ----------------------------------------
+
+
+// BASE TABLES
+// -----------------
+table {
+  max-width: 100%;
+  background-color: @tableBg;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  width: 100%;
+  .margin-bottom(80);
+  border-bottom: 1px solid @tableBorder;
+  color: @textColor;
+  .font-size(@baseFontSize); .line-height(@baseLineHeight);
+}
+
+// BASELINE STYLES
+// ---------------
+
+// Cells
+th,
+td {
+	.max-width(240);
+  text-align: left;
+  vertical-align: top;
+  .box-sizing;
+	line-height: 1.4;
+}
+th {
+  .padding(23,5,16,5);
+	.box-sizing;
+  border-bottom: 2px solid @tableBorder;
+  .font-size(9);
+  line-height: 1;
+  .weight-semibold;
+  text-transform: uppercase;
+  vertical-align: top;
+}
+@-moz-document url-prefix() { 
+  th.active {
+  	.padding(23,5,22,5);
+     display: block;
+  }
+}
+
+
+td {
+  .padding(17,5,13,5);
+  .box-sizing;
+  border-top: 1px solid @tableBorder;
+  .font-size(14);
+
+  &.active { 
+  	background: @white;
+  }
+}
+
+
+// HOVER EFFECT
+// ------------
+// Placed here since it has to come after the potential zebra striping
+tbody:hover td,
+tbody:hover th {
+  background-color: @tableBgHover;
+}

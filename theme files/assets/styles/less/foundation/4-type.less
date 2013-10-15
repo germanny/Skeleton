@@ -1,0 +1,254 @@
+/* Typography.less
+// Generic styles for headings, body text, lists, code, and stuff.
+------------------------------------------------------------------*/
+
+// BODY TEXT
+// ---------
+
+html { font-size: 62.5%; }
+body { 
+	#font > .sans-serif(@baseFontSize, @weight-regular, @baseLineHeight);
+	color: @textColor;
+}
+
+p { 
+	.margin-bottom(25);
+	color: @textColor;
+	.font-size(@baseFontSize);.line-height(@baseLineHeight);
+		
+	small { .font-size(11); color: @gray; }
+}
+	.entry-content, .tab-content {
+		p, ul, ol, dl {
+			.text-set(14,20);
+		}
+	}
+.lead { .margin-bottom(@baseLineHeight); .font-size(20); .weight-light; .line-height(@baseLineHeight * 1.5); }
+
+
+// HEADINGS
+// --------
+
+h1, h2, h3, h4, h5, h6 { 
+	margin:0; text-rendering: optimizelegibility; // Fix the character spacing for headings
+	#font > .alt-sans-serif(@baseFontSize, @weight-regular, @baseLineHeight);
+  small { .weight-regular; }
+}
+h1 {
+	.font-size(35);line-height: 1;
+  small {  }
+  &.page-title {}
+}
+	.entry-content h1 {  }
+	#content header.page-header h1,
+	#content header.archive-header h1 {
+		.margin-bottom(22);
+		.text-set(35,39);
+		letter-spacing: -.04em;
+		text-transform: none;
+	}
+	
+h2 { 
+	.font-size(28);.line-height(40);
+  small {  }
+}
+	.entry-content h2 {  }
+	#content h2 {
+		text-transform: uppercase;
+		
+		span { color: @orange; }
+	}
+	#content header.entry-header h2,
+	#content header.archive-header h2 {
+		.margin-bottom(22);
+		.text-set(35,39);
+		letter-spacing: -.04em;
+		text-transform: none;
+	}
+
+
+h3 {
+	.font-size(17);
+	.weight-bold;
+  small {  }
+  &.entry-title {
+  	a {  }
+	}
+}
+	.entry-content h3 {
+		.margin-bottom(14);
+		#font > .sans-serif(17, @weight-bold, 20);
+	}
+	.sidebar h3 { .text-set(28,30); }
+
+h4, h5, h6 {  }
+h4 { 
+  small {  }
+}
+	.entry-content h4 {  }
+	.sidebar h4, #latest-posts h4 {  }
+
+h5 {  }
+h6 {  }
+
+.entry-content h1.fancy,
+.entry-content h2.fancy,
+.entry-content h3.fancy,
+.entry-content h4.fancy,
+.entry-content h5.fancy,
+.entry-content h6.fancy {
+	.style-italic;
+}
+.entry-content h1.thin,
+.entry-content h2.thin,
+.entry-content h3.thin,
+.entry-content h4.thin,
+.entry-content h5.thin,
+.entry-content h6.thin {
+	.weight-regular;
+}
+
+
+//Page header
+.page-header {
+
+}
+
+// LISTS
+// -----
+
+// Unordered and Ordered lists
+ul, ol, dl { 
+	.margin(0, 0, 25, 0); padding: 0; list-style:none; 
+	color: @textColor;
+	.text-set(@baseFontSize, @baseLineHeight);
+}
+ul { list-style: disc; }
+ol { list-style: decimal; }
+
+.entry-content ul ul,
+.entry-content ul ol,
+.entry-content ol ol,
+.entry-content ol ul {
+  margin: 0;
+}
+ul.unstyled, ol.unstyled { margin-left: 0; list-style: none; }
+
+	.entry-content ul > li, ul.bullet-list > li { .margin(0, 0, 10, 22); .custom-bullet-li; }
+	.entry-content ul > li:before, ul.bullet-list > li:before { .custom-bullet-li-before; color: @secondary-color; }
+
+	.entry-content ol {
+	    counter-reset:li; /* Initiate a counter */
+	    .margin-left(57);
+	}
+	.entry-content  ol > li {
+	    position:relative; /* Create a positioning context */
+	    .margin(0, 12, 10, 0); /* Give each list item a left margin to make room for the numbers */
+	    padding:0; /* Add some spacing around the content */
+	    list-style:none; /* Disable the normal item numbering */
+	}
+	.entry-content  ol > li:before {
+	    content:counter(li); /* Use the counter as content */
+	    counter-increment:li; /* Increment the counter by 1 */
+	    /* Position and style the number */
+	    .width(20);position:absolute; top:0; left:-27px;left: -2.7rem;
+	    color:@secondary-color;text-align: right;
+	    .font-size(14);
+	    text-align: right;
+	    .weight-bold;
+	}
+	.entry-content  ol.alpha > li:before {
+	    content:counter(li, upper-alpha);
+	    top:-1px;top:-.1rem;
+	    .font-size(16);
+	}
+	.list-continue { counter-reset: item !important; }
+
+// Description Lists
+dl {  }
+dt, dd { .line-height(@baseLineHeight); }
+dt { .weight-bold; .line-height(@baseLineHeight - 1); }
+dd { .margin-left(@baseLineHeight / 2); }
+// Horizontal layout (like forms)
+.dl-horizontal {
+  dt {  float: left; width: 120px; clear: left; text-align: right; .text-overflow();  }
+  dd { .margin-left(130); }
+}
+
+// Emphasis
+b, strong, .bold { color: @black; .weight-semibold; }
+big, .large {font-size: 115%;}
+
+dfn, em, i, .italic { .style-italic; }
+.muted { color: @gray; }
+
+// Abbreviations and acronyms
+abbr[title], acronym { cursor: help; border-bottom: 1px dotted #ddd; }
+abbr.initialism { font-size: 90%; text-transform: uppercase; }
+
+// MISC
+// ----
+big, .large {font-size: 115%;}
+del, s, strike{text-decoration:line-through;}
+ins, .highlight { background: #ff9; color: #000; text-decoration: none; }
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+pre, code, kbd, samp, tt { 
+	display: block;
+	.padding-unified(5);
+	background-color: lighten(@black, 45%);
+	#font > .monospace(10, @weight-regular, 16);
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
+small, .small { font-size: 85%; }
+
+// Prevents sub and sup affecting line-height in all browsers
+// -------------------------
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+u, .underline { text-decoration: underline; }
+nav ul, nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0; }
+svg:not(:root) { overflow: hidden; }
+.requi,.emphasis {color:red;}
+
+
+// Blockquotes
+blockquote {
+  p { margin-bottom: 0; }
+  small { display: block; .line-height(@baseLineHeight); color: @gray;
+    &:before { content: '\2014 \00A0'; }
+  }
+
+  // Float right with text-align: right
+  &.pull-right {
+    float: right;
+    padding-right: 15px;
+    padding-left: 0;
+    border-right: 5px solid @gray;
+    border-left: 0;
+    p, small { text-align: right; }
+  }
+}
+
+// Quotes
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+
+blockquote{ .margin(0, 0, @baseLineHeight, 0); .padding(0, 40, 0, 40); position: relative; }
+q{}
+
+blockquote:before,q:before,blockquote p:after, q:after{font-family: Baskerville, Baskerville Old Face, Times New Roman, Nimbus Roman No9 L, serif !important;.font-size(15);}
+	blockquote:before,q:before{margin-right:1px;content:'\201C';}
+		blockquote:before{position: absolute;top:2px;left:21px; .font-size(27);.style-italic;}
+	blockquote p:after, q:after{margin-left:1px;content:'\201D'; }
+blockquote p{margin:0;font-style: italic;}
+
+// Addresses
+address { display: block; .margin-bottom(@baseLineHeight); font-style: normal; .line-height(@baseLineHeight); }
+
+// Misc
+small { font-size: 100%; }
+cite { font-style: normal; }
+
+

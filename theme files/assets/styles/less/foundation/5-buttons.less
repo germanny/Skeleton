@@ -1,0 +1,71 @@
+// BUTTON STYLES
+// -------------
+
+
+// Base styles
+// --------------------------------------------------
+.btn,
+.navigation a,
+button,
+input[type="reset"],
+input[type="submit"],
+input[type="button"] {
+	-webkit-appearance: none;
+
+	-webkit-background-clip: padding-box; 
+	   -moz-background-clip: padding-box; 
+	        background-clip: padding-box;
+
+	border: 0;
+	clear:both;
+	cursor: pointer;
+	display: table;
+	outline: 0;
+	overflow: visible;
+	text-decoration: none;
+	vertical-align: baseline;
+	*vertical-align: middle;
+	
+	.height(17);
+	display: inline-block; clear: both;
+  background: @btnBackground;
+  .padding(11,23,7,23);
+  .border-radius(@borderRadius);
+  color: @white;
+  #font > .alt-sans-serif(14, @weight-bold, 14);
+  text-transform: uppercase;
+  .transition();
+
+  &:visited { color: @white; }
+  &:active, &:focus, &:hover { background: @btnHover; color: @white; }
+}
+
+// Focus state for keyboard and accessibility
+input[type="submit"]:focus,.btn:focus {
+  .tab-focus();
+  outline: 0;
+}
+
+// Active state
+input[type="submit"]:active,
+.btn.active,
+.btn:active {
+  outline: 0;
+}
+
+// Disabled state
+.btn.disabled,
+.btn[disabled] {
+  cursor: default;
+  background-color: darken(@white, 10%);
+  background-image: none;
+  .opacity(65);
+  .box-shadow(none);
+}
+
+span.btn a { color: @white; }
+
+
+/***** form#form#course-search-form search button *****/
+form#course-search-form button,.btn {
+}
